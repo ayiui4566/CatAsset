@@ -180,7 +180,11 @@ namespace CatAsset.Editor
         /// </summary>
         public static string FullNameToAssetName(string fullName)
         {
+#if UNITY_IOS
+            int assetsIndex = fullName.IndexOf("Assets/");
+#else
             int assetsIndex = fullName.IndexOf("Assets\\");
+#endif
             string assetsDir = RuntimeUtil.GetRegularPath(fullName.Substring(assetsIndex));
             return assetsDir;
         }
